@@ -1,6 +1,7 @@
 var ss = SpreadsheetApp.getActive();
 var sheet = ss.getActiveSheet();
 var currentCell = sheet.getActiveCell();
+var maxRow = sheet.getMaxRows();
 var maxColumn = sheet.getMaxColumns();
 
 function main() {
@@ -9,8 +10,9 @@ function main() {
   move_cell();
 }
 
+// 第2引数を自由に設定
 function repeat_main() {
-  for(i=0;i<5;i++) {
+  for(i=0;i<maxRow;i++) {
     main();
   }
 }
@@ -23,6 +25,8 @@ function select_all_rows() {
 }
 
 function draw_lines() {
+  // 枠線設定
+  // setBorder(top, left, bottom, right, vertical, horizontal, color, style)
   ss.getActiveRangeList().setBorder(null, null, true, null, null, null, '#999999', SpreadsheetApp.BorderStyle.DASHED);
 }
 
